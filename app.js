@@ -1,15 +1,9 @@
-const express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const fs = require('fs');
 
-app.use(bodyParser.urlencoded({ extended:true}));
-app.use(bodyParser.json());
-
-var port = process.env.PORT || 8080;
-
-var router = require('./routes')(app)
-
-var server = app.listen(port, function(){
-    console.log("express 서버 시작됨. 포트 :"+port)
-})
+const jsonFile = fs.readFileSync('data.json', 'utf8');
+const jsonData = JSON.parse(jsonFile);
+const a = JSON.stringify(jsonData);
+const b = JSON.parse(a);
+const c = JSON.stringify(b.results.trackmatches) 
+const d = JSON.parse(c);
+console.log(d.track[0]);
